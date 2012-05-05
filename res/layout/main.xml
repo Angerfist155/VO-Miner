@@ -9,7 +9,7 @@
         android:name="com.uruwolf.vominer.fragments.ControlPanelFragment"
         android:id="@+id/sectorSelect"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         />
     
@@ -28,7 +28,7 @@
         	android:id="@+id/textView1"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:text="TextView"
+        	android:text="This will eventually show information about the sector selected on the left"
         	/>
     </LinearLayout>
 
