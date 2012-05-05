@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Vo-miner</string>
-    <string name="load">Load</string>
     <string name="toast_loading_message">Loading %1$s %2$S-%3$s</string>
 </resources>

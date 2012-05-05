@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
  * The main activity for the app
  * @author Uru
  */
-public class VoMinerActivity extends Activity implements OnClickListener{
+public class VoMinerActivity extends Activity implements OnItemSelectedListener{
 	
 	//Tag to use for debugging
 	public static final String TAG = "Vo-Miner";
@@ -22,9 +23,10 @@ public class VoMinerActivity extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        //Make sure we can respond to button clicks
-        Button loadButton = (Button) findViewById(R.id.load_button);
-        loadButton.setOnClickListener(this);
+        //Make sure we can update the information when something is selected
+        ((Spinner)findViewById(R.id.systemList)).setOnItemSelectedListener(this);
+        ((Spinner)findViewById(R.id.gridAlphaList)).setOnItemSelectedListener(this);
+        ((Spinner)findViewById(R.id.gridNumList)).setOnItemSelectedListener(this);
     }
     
     /**
@@ -37,10 +39,14 @@ public class VoMinerActivity extends Activity implements OnClickListener{
         return true;
     }
     
+    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+    	toast();
+    }
+    
     /**
-     * Process a click event for the button
+     * Shows the user a toast containing the selected system and sector
      */
-    public void onClick(View v) {
+    public void toast() {
 
     	//Load up the three selected values from the spinners
     	String system = (String) ((Spinner)findViewById(R.id.systemList)).getSelectedItem();
@@ -53,4 +59,8 @@ public class VoMinerActivity extends Activity implements OnClickListener{
     			Toast.LENGTH_SHORT)
     			.show();
 	}
+    
+    public void onNothingSelected(AdapterView<?> parentView) {
+    	// Do nothing
+    }
 }
