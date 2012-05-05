@@ -3,5 +3,54 @@
 
     <string name="hello">Hello World, VoMinerActivity!</string>
     <string name="app_name">Vo-miner</string>
-
+	
+	<string-array name="mineral_list">
+	    <item>Apicene</item>
+	    <item>Aquean</item>
+	    <item>Carbonic</item>
+	    <item>Denic</item>
+	    <item>Ferric</item>
+	    <item>Heliocene</item>
+	    <item>Ishik</item>
+	    <item>Lanthanic</item>
+	    <item>Pentric</item>
+	    <item>Pyronic</item>
+	    <item>Silicate</item>
+	    <item>VanAzek</item>
+	    <item>Xithricite</item>
+	</string-array>
+	
+	<string-array name="system_list">
+	    <item>Arta Caelestis</item>
+	    <item>Artana Aquilus</item>
+	    <item>Azek</item>
+	    <item>Betheshee</item>
+	    <item>Bractus</item>
+	    <item>Cantus</item>
+	    <item>Dantia</item>
+	    <item>Dau</item>
+	    <item>Deneb</item>
+	    <item>Divinia</item>
+	    <item>Edras</item>
+	    <item>Eo</item>
+	    <item>Geira Rutilus</item>
+	    <item>Helios</item>
+	    <item>Initros</item>
+	    <item>Itan</item>
+	    <item>Jallik</item>
+	    <item>Latos</item>
+	    <item>Metana</item>
+	    <item>Nyrius</item>
+	    <item>Odia</item>
+	    <item>Pelatus</item>
+	    <item>Pherona</item>
+	    <item>Pyronis</item>
+	    <item>Rhamus</item>
+	    <item>Sedina</item>
+	    <item>Setalli Shinas</item>
+	    <item>Sol II</item>
+	    <item>Ukari</item>
+	    <item>Verasi</item>
+	</string-array>
+    
 </resources>
