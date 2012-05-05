@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="true"
+    android:orientation="vertical" >
+
+    <fragment
+        android:name="com.uruwolf.vominer.fragments.ControlPanelFragment"
+        android:id="@+id/sectorSelect"
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        />
+    
+    <View
+        android:layout_height="1dp"
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        />
+    
+    <LinearLayout
+        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_weight="4"
+        >
+        <TextView
+        	android:id="@+id/textView1"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="This will eventually show information about the sector selected from above"
+        	/>
+    </LinearLayout>
+
+</LinearLayout>
