@@ -6,7 +6,7 @@
     android:orientation="horizontal" >
 
     <fragment
-        android:name="com.uruwolf.vominer.fragments.SectorSelectFragment"
+        android:name="com.uruwolf.vominer.fragments.ControlPanelFragment"
         android:id="@+id/sectorSelect"
         android:layout_width="0dp"
         android:layout_height="match_parent"

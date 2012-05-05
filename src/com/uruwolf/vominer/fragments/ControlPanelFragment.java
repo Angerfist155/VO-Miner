@@ -21,12 +21,24 @@ public class ControlPanelFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.sector_select, container, false);
 		
-		Spinner spinner = (Spinner) view.findViewById(R.id.systemList);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+		Spinner systemSpinner = (Spinner) view.findViewById(R.id.systemList);
+        ArrayAdapter<CharSequence> systemAdapter = ArrayAdapter.createFromResource(
                 getActivity(), R.array.system_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        systemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        systemSpinner.setAdapter(systemAdapter);
 		
+        Spinner gridAlphaSpinner = (Spinner) view.findViewById(R.id.gridAlphaList);
+        ArrayAdapter<CharSequence> gridAlphaAdapter = ArrayAdapter.createFromResource(
+                getActivity(), R.array.grid_alpha_list, android.R.layout.simple_spinner_item);
+        gridAlphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gridAlphaSpinner.setAdapter(gridAlphaAdapter);
+        
+        Spinner gridNumSpinner = (Spinner) view.findViewById(R.id.gridNumList);
+        ArrayAdapter<CharSequence> gridNumAdapter = ArrayAdapter.createFromResource(
+                getActivity(), R.array.grid_num_list, android.R.layout.simple_spinner_item);
+        gridNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gridNumSpinner.setAdapter(gridNumAdapter);
+        
 		return view;
 	}
 	
