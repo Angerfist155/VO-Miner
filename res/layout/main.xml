@@ -14,22 +14,17 @@
         />
     
     <View
-        android:layout_width="1dp"
+        android:layout_width="2dp"
         android:layout_height="fill_parent"
-        android:background="@android:color/white"
+        android:background="@android:color/holo_blue_bright"
         />
     
-    <LinearLayout
+    <fragment
+        android:name="com.uruwolf.vominer.fragments.SectorInfoFragment"
+        android:id="@+id/sectorInfo"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="2"
-        >
-        <TextView
-        	android:id="@+id/textView1"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="This will eventually show information about the sector selected on the left"
-        	/>
-    </LinearLayout>
+        android:layout_weight="3"
+        />
 
 </LinearLayout>

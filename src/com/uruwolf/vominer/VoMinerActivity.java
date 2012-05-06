@@ -73,7 +73,7 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
     	SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, 0).edit();
     	//Load the selected items
     	Sector selected = getSelectedSector();
-    	
+    	//Dump them all into the right places and save
     	editor.putString(PREF_LAST_SYSTEM, selected.getSystem());
     	editor.putString(PREF_LAST_SECTOR_APLHA, selected.getAplhaCoord());
     	editor.putString(PREF_LAST_SECTOR_NUM, selected.getNumCoord());
