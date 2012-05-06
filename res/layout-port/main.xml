@@ -8,9 +8,8 @@
     <fragment
         android:name="com.uruwolf.vominer.fragments.ControlPanelFragment"
         android:id="@+id/sectorSelect"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_weight="1"
         />
     
     <View
@@ -20,9 +19,8 @@
         />
     
     <LinearLayout
-        android:layout_height="0dp"
+        android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:layout_weight="4"
         >
         <TextView
         	android:id="@+id/textView1"
