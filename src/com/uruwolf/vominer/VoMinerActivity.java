@@ -1,5 +1,7 @@
 package com.uruwolf.vominer;
 
+import com.uruwolf.vominer.data.Sector;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +13,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
  * The main activity for the app
- * @author Uru
+ * @author Steve "Uru" West <uruwolf@gmail.com>
  */
 public class VoMinerActivity extends Activity implements OnItemSelectedListener{
 	
@@ -109,8 +111,8 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
     public Sector getSelectedSector(){
     	return new Sector((String) ((Spinner)findViewById(R.id.systemList)).getSelectedItem(),
     					  (String) ((Spinner)findViewById(R.id.gridAlphaList)).getSelectedItem(),
-    					  (String) ((Spinner)findViewById(R.id.gridNumList)).getSelectedItem()
-    					 );
+    					  (String) ((Spinner)findViewById(R.id.gridNumList)).getSelectedItem(),
+    				      -1, "");
     }
     
     public void onNothingSelected(AdapterView<?> parentView) {
