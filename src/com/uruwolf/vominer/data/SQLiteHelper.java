@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Contains the magical code to talk to the SQLite database
+ * @author Steve "Uru" West <uruwolf@gmail.com>
+ *
+ */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
 	//General structure information

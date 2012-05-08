@@ -1,6 +1,7 @@
 package com.uruwolf.vominer.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contains basic location information for a specific sector
@@ -12,7 +13,7 @@ public class Sector {
 	private String aplhaCoord;
 	private String numCoord;
 	private String notes;
-	private final ArrayList<Mineral> mineralList;
+	private final List<Mineral> mineralList;
 	
 	/**
 	 * Creates an empty sector
@@ -104,7 +105,7 @@ public class Sector {
 		mineralList.remove(toRemove);
 	}
 	
-	public ArrayList<Mineral> getMinerals(){
+	public List<Mineral> getMinerals(){
 		return mineralList;
 	}
 }
