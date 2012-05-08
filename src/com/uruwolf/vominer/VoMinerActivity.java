@@ -1,6 +1,7 @@
 package com.uruwolf.vominer;
 
 import com.uruwolf.vominer.data.Sector;
+import com.uruwolf.vominer.data.SectorDataSource;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,11 +31,16 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
 	//Last selected numerical coord
 	private static final String PREF_LAST_SECTOR_NUM = "last_selected_num";
 	
+	private SectorDataSource data;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        data = new SectorDataSource(this);
+        data.open();
         
         //Get the spinners to use later
         Spinner systemList = (Spinner)findViewById(R.id.systemList);
@@ -80,6 +86,14 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
     	editor.putString(PREF_LAST_SECTOR_APLHA, selected.getAplhaCoord());
     	editor.putString(PREF_LAST_SECTOR_NUM, selected.getNumCoord());
     	editor.commit();
+    	
+    	data.close();
+    }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	data.open();
     }
     
     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {

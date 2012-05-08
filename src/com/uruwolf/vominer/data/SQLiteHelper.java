@@ -39,14 +39,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String createQuery = "create table "+TABLE_SECTORS+"(" +
+		String createSectorsQuery = "create table "+TABLE_SECTORS+"(" +
 				COL_ID+" integer primary key autoincrement,"+
 				COL_SECTORS_SYSTEM+" text not null,"+
 				COL_SECTORS_ALPHA+" text not null,"+
 				COL_SECTORS_NUM+" text not null,"+
 				COL_SECTORS_NOTES+" text not null"+
-				");"+
-				"create table "+TABLE_SECTOR_MINERALS+"("+
+				");";
+		
+		String createMineralsQuery = "create table "+TABLE_SECTOR_MINERALS+"("+
 				COL_ID+" integer primary key autoincrement,"+
 				COL_SECTOR_MINERALS_SECTOR+" integer not null,"+
 				COL_SECTOR_MINERALS_MINERAL+" text not null,"+
@@ -54,7 +55,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				");";
 		
 		Log.d(com.uruwolf.vominer.VoMinerActivity.TAG, "Creating new database");
-		db.execSQL(createQuery);
+		db.execSQL(createSectorsQuery);
+		db.execSQL(createMineralsQuery);
 		Log.d(com.uruwolf.vominer.VoMinerActivity.TAG, "Database created");
 	}
 
