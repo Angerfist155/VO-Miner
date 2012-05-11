@@ -98,10 +98,12 @@ public class Sector {
 	}
 	
 	public void addMineral(Mineral newMineral){
+		newMineral.setSector(this);
 		mineralList.add(newMineral);
 	}
 	
 	public void removeMineral(Mineral toRemove){
+		toRemove.setSector(null);
 		mineralList.remove(toRemove);
 	}
 	
