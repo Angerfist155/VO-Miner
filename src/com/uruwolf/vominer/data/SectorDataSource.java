@@ -55,8 +55,8 @@ public class SectorDataSource {
 		Sector sector = null;
 		
 		//Set up the where statement
-		String whereString = SQLiteHelper.COL_SECTORS_SYSTEM+"=?"+
-							 SQLiteHelper.COL_SECTORS_ALPHA+"=?"+
+		String whereString = SQLiteHelper.COL_SECTORS_SYSTEM+"=? AND "+
+							 SQLiteHelper.COL_SECTORS_ALPHA+"=? AND "+
 							 SQLiteHelper.COL_SECTORS_NUM+"=?";
 		
 		String[] whereList = {id.getSystem(), id.getAplhaCoord(), id.getNumCoord()};
@@ -108,6 +108,7 @@ public class SectorDataSource {
 	}
 	
 	private Sector cursorToSector(Cursor cursor){
+		cursor.moveToFirst();
 		//Populate the sector
 		Sector sector = new Sector();
 		sector.setId(cursor.getInt(0)); //Load the ID

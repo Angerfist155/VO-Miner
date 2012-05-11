@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -16,7 +17,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
  * The main activity for the app
  * @author Steve "Uru" West <uruwolf@gmail.com>
  */
-public class VoMinerActivity extends Activity implements OnItemSelectedListener{
+public class VoMinerActivity extends Activity implements OnItemSelectedListener, OnClickListener{
 	
 	//Tag to use for debugging
 	public static final String TAG = "Vo-Miner";
@@ -32,6 +33,8 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
 	private static final String PREF_LAST_SECTOR_NUM = "last_selected_num";
 	
 	private SectorDataSource data;
+	//Contains the currently selected sector
+	private Sector currentSector;
 	
     /** Called when the activity is first created. */
     @Override
@@ -62,6 +65,9 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
         		settings.getString(PREF_LAST_SECTOR_APLHA, "")));
         gridNumList.setSelection(((ArrayAdapter<String>) gridNumList.getAdapter()).getPosition(
         		settings.getString(PREF_LAST_SECTOR_NUM, "")));
+        
+        //Add a listener to the add button
+        ((Button)findViewById(R.id.button_add_mineral)).setOnClickListener(this);
     }
     
     /**
@@ -97,39 +103,35 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener{
     }
     
     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-    	toast();
-    }
-    
-    /**
-     * Shows the user a toast containing the selected system and sector
-     */
-    public void toast() {
-
-    	//Load up the three selected values from the spinners
-    	Sector sector = getSelectedSector();
+    	// Ping the SectorInfoFragment to get it to update
+    	currentSector = getSelectedSector();
+    	String sectorName = String.format(getString(R.string.toast_loading_message),
+    			currentSector.getSystem(),
+    			currentSector.getAplhaCoord(),
+    			currentSector.getNumCoord());
     	
-    	//Show a Toast to make the user think that something happened
-    	Toast.makeText(getApplicationContext(),
-    			String.format(getString(R.string.toast_loading_message),
-    					sector.getSystem(),
-    					sector.getAplhaCoord(),
-    					sector.getNumCoord()),
-    			Toast.LENGTH_SHORT)
-    			.show();
-	}
+    	((TextView)findViewById(R.id.textView1)).setText(sectorName);
+    }
     
     /**
      * Gets the currently selected sector
      * @return A Sector containing the information
      */
     public Sector getSelectedSector(){
-    	return new Sector((String) ((Spinner)findViewById(R.id.systemList)).getSelectedItem(),
-    					  (String) ((Spinner)findViewById(R.id.gridAlphaList)).getSelectedItem(),
-    					  (String) ((Spinner)findViewById(R.id.gridNumList)).getSelectedItem(),
-    				      -1, "");
+    	Sector info = new Sector((String) ((Spinner)findViewById(R.id.systemList)).getSelectedItem(),
+				  (String) ((Spinner)findViewById(R.id.gridAlphaList)).getSelectedItem(),
+				  (String) ((Spinner)findViewById(R.id.gridNumList)).getSelectedItem(),
+			      -1, "");
+    	
+    	return data.populate(info); 
     }
     
     public void onNothingSelected(AdapterView<?> parentView) {
     	// Do nothing
     }
+
+	public void onClick(View v) {
+		Log.d(TAG, "Ouch!");
+		
+	}
 }
