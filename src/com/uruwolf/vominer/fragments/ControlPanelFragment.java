@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import com.uruwolf.vominer.data.Static;
 
 /**
  * Controls a view for selecting a system and sector and as well as a button to trigger loading information for said sector.
@@ -28,22 +29,25 @@ public class ControlPanelFragment extends Fragment {
 		
 		//Set up all the spinners. One for the system and another two for the coords. I hate how messy this is
 		Spinner systemSpinner = (Spinner) view.findViewById(R.id.systemList);
-        ArrayAdapter<CharSequence> systemAdapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.system_list, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> systemAdapter = new ArrayAdapter<String>(getActivity(),
+        		android.R.layout.simple_list_item_1,
+        		Static.systemList);
         systemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         systemSpinner.setAdapter(systemAdapter);
 		
         //Load the letter selection
         Spinner gridAlphaSpinner = (Spinner) view.findViewById(R.id.gridAlphaList);
-        ArrayAdapter<CharSequence> gridAlphaAdapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.grid_alpha_list, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> gridAlphaAdapter = new ArrayAdapter<String>(getActivity(),
+        		android.R.layout.simple_list_item_1,
+        		Static.alphaCoordList);
         gridAlphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gridAlphaSpinner.setAdapter(gridAlphaAdapter);
 
         //And finally load the number selector
         Spinner gridNumSpinner = (Spinner) view.findViewById(R.id.gridNumList);
-        ArrayAdapter<CharSequence> gridNumAdapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.grid_num_list, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> gridNumAdapter = new ArrayAdapter<String>(getActivity(),
+        		android.R.layout.simple_list_item_1,
+        		Static.numCoordList);
         gridNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gridNumSpinner.setAdapter(gridNumAdapter);
         

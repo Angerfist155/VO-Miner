@@ -1,10 +1,14 @@
 package com.uruwolf.vominer.data;
 
+import com.uruwolf.vominer.R;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 /**
  * Acts as a layer between Objects and SQL for sectors
@@ -134,9 +138,5 @@ public class SectorDataSource {
 		
 		mineral.setId(database.insert(SQLiteHelper.TABLE_SECTOR_MINERALS, null, values));
 		sector.addMineral(mineral);
-	}
-	
-	private void setMineralLists(Sector sector){
-		
 	}
 }

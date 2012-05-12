@@ -114,7 +114,9 @@ public class Sector {
 	public boolean equal(Object obj){
 		if(obj instanceof Sector){
 			Sector newS = (Sector) obj;
-			return (newS.getSystem().equals(system) && newS.getAplhaCoord().equals(alphaCoord) && newS.getNumCoord().equals(numCoord));
+			return (newS.getSystem().equals(system) &&
+					newS.getAplhaCoord().equals(alphaCoord) &&
+					newS.getNumCoord().equals(numCoord));
 		}
 		
 		return false;

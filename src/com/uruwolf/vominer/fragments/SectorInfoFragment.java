@@ -20,13 +20,6 @@ public class SectorInfoFragment extends Fragment {
 		
 		//Set up the layout that we want to use for this fragment
 		View view = inflater.inflate(R.layout.sector_info, container, false);
-		
-		//Set up all the spinners. One for the system and another two for the coords. I hate how messy this is
-		Spinner oreSpinner = (Spinner) view.findViewById(R.id.mineralList);
-        ArrayAdapter<CharSequence> systemAdapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.mineral_list, android.R.layout.simple_spinner_item);
-        systemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        oreSpinner.setAdapter(systemAdapter);
 
 		return view;
 	}

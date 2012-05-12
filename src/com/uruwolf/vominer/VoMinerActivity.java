@@ -1,6 +1,9 @@
 package com.uruwolf.vominer;
 
+import java.util.ArrayList;
+
 import com.uruwolf.vominer.data.*;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -107,6 +110,8 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
     			currentSector.getNumCoord());
     	
     	((TextView)findViewById(R.id.textView1)).setText(sectorName);
+    	
+    	setMineralLists(currentSector);
     }
     
     /**
@@ -132,5 +137,33 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
 		mineral.setMineral(mineralName);
 		
 		data.addMineralToSector(currentSector, mineral);
+		setMineralLists(currentSector);
+	}
+	
+	private void setMineralLists(Sector sector){
+		//Populate the list with the initial data
+		//Remove the ones we don't want
+		//Add the assigned minerals to the list
+		Spinner oreSpinner = (Spinner) findViewById(R.id.mineralList);
+		ArrayAdapter<String> mineralAdapter = new ArrayAdapter<String>(this,
+        		android.R.layout.simple_list_item_1,
+        		Static.mineralList);
+        mineralAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        oreSpinner.setAdapter(mineralAdapter);
+        
+        //Grab the ore list for later
+        ArrayAdapter<String> oreListAdapter = new ArrayAdapter<String>(this,
+        		android.R.layout.simple_list_item_1,
+        		new ArrayList<String>());
+        ((ListView)findViewById(R.id.oreList)).setAdapter(oreListAdapter);
+        
+        //Add and remove the needed things from the lists 
+        for(Mineral mineral : sector.getMinerals()){
+        	mineralAdapter.remove(mineral.getMineral());
+        	mineralAdapter.notifyDataSetChanged();
+        	
+        	oreListAdapter.add(mineral.getMineral());
+        	oreListAdapter.notifyDataSetChanged();
+        }
 	}
 }
