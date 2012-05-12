@@ -118,4 +118,25 @@ public class SectorDataSource {
 		sector.setNotes(cursor.getString(4)); //Get the system notes
 		return sector;
 	}
+	
+	/**
+	 * Attempts to add a mineral to the given sector
+	 * @param sector Must have an id >= 0
+	 * @param mineral
+	 */
+	public void addMineralToSector(Sector sector, Mineral mineral){
+		if(sector.getId() < 0)
+			throw new IllegalArgumentException("Sector needs a valid id.");
+		
+		ContentValues values = new ContentValues();
+		values.put(SQLiteHelper.COL_SECTOR_MINERALS_MINERAL, mineral.getMineral());
+		values.put(SQLiteHelper.COL_SECTOR_MINERALS_SECTOR, sector.getId());
+		
+		mineral.setId(database.insert(SQLiteHelper.TABLE_SECTOR_MINERALS, null, values));
+		sector.addMineral(mineral);
+	}
+	
+	private void setMineralLists(Sector sector){
+		
+	}
 }

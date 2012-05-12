@@ -9,7 +9,8 @@ public class Mineral {
 
 	private Sector sector;
 	private String mineral;
-	
+	private long id;
+
 	public Mineral(){
 		this(null, "");
 	}
@@ -45,5 +46,19 @@ public class Mineral {
 	 */
 	public void setMineral(String mineral) {
 		this.mineral = mineral;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 }

@@ -1,13 +1,9 @@
 package com.uruwolf.vominer;
 
-import com.uruwolf.vominer.data.Sector;
-import com.uruwolf.vominer.data.SectorDataSource;
-
+import com.uruwolf.vominer.data.*;
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -131,7 +127,10 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
     }
 
 	public void onClick(View v) {
-		Log.d(TAG, "Ouch!");
+		Mineral mineral  = new Mineral();
+		String mineralName = (String)((Spinner)findViewById(R.id.mineralList)).getSelectedItem();
+		mineral.setMineral(mineralName);
 		
+		data.addMineralToSector(currentSector, mineral);
 	}
 }
