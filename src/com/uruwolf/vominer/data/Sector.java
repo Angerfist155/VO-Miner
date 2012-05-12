@@ -10,7 +10,7 @@ import java.util.List;
 public class Sector {
 	private int id;
 	private String system;
-	private String aplhaCoord;
+	private String alphaCoord;
 	private String numCoord;
 	private String notes;
 	private final List<Mineral> mineralList;
@@ -48,13 +48,13 @@ public class Sector {
 	 * @return the aplhaCoord
 	 */
 	public String getAplhaCoord() {
-		return aplhaCoord;
+		return alphaCoord;
 	}
 	/**
 	 * @param aplhaCoord the aplhaCoord to set
 	 */
-	public void setAplhaCoord(String aplhaCoord) {
-		this.aplhaCoord = aplhaCoord;
+	public void setAplhaCoord(String alphaCoord) {
+		this.alphaCoord = alphaCoord;
 	}
 	/**
 	 * @return the numCoord
@@ -109,5 +109,14 @@ public class Sector {
 	
 	public List<Mineral> getMinerals(){
 		return mineralList;
+	}
+	
+	public boolean equal(Object obj){
+		if(obj instanceof Sector){
+			Sector newS = (Sector) obj;
+			return (newS.getSystem().equals(system) && newS.getAplhaCoord().equals(alphaCoord) && newS.getNumCoord().equals(numCoord));
+		}
+		
+		return false;
 	}
 }
