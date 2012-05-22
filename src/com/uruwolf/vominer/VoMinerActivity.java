@@ -103,14 +103,9 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
     
     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
     	// Ping the SectorInfoFragment to get it to update
-    	currentSector = getSelectedSector();
-    	String sectorName = String.format(getString(R.string.toast_loading_message),
-    			currentSector.getSystem(),
-    			currentSector.getAplhaCoord(),
-    			currentSector.getNumCoord());
-    	
-    	((TextView)findViewById(R.id.textView1)).setText(sectorName);
-    	
+    	//Make sure we have an up-to-date sector
+    	currentSector = data.populate(getSelectedSector());
+
     	setMineralLists(currentSector);
     }
     

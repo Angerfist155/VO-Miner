@@ -97,11 +97,19 @@ public class Sector {
 		this.id = id;
 	}
 	
+	/**
+	 * Adds a mineral to this sector. Also updates the mineral with the new parent sector
+	 * @param newMineral
+	 */
 	public void addMineral(Mineral newMineral){
 		newMineral.setSector(this);
 		mineralList.add(newMineral);
 	}
 	
+	/**
+	 * Removes a mineral from this sector. Also updates the mineral with a new parent sector of "null"
+	 * @param toRemove
+	 */
 	public void removeMineral(Mineral toRemove){
 		toRemove.setSector(null);
 		mineralList.remove(toRemove);

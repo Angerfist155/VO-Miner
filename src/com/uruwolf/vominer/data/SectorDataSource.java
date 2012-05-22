@@ -77,8 +77,8 @@ public class SectorDataSource {
 		//Check that we have a result to work with
 		if(cursor.getCount() > 0){
 			cursor.moveToFirst();
-			//Populate the sector
-			sector = cursorToSector(cursor);
+			//Populate the sector and load up minerals
+			sector = populateMinerals(cursorToSector(cursor));
 		}
 		
 		cursor.close();
@@ -123,9 +123,51 @@ public class SectorDataSource {
 		return sector;
 	}
 	
+	private Sector populateMinerals(Sector sector){
+		if(sector.getId() < 0)
+			throw new IllegalArgumentException("Sector needs a valid ID");
+		
+		//Set up the where statement
+		String whereString = SQLiteHelper.COL_SECTOR_MINERALS_SECTOR+"=?";
+		
+		String[] whereList = {sector.getId()+""};
+				
+		//Run the query and get the results
+		Cursor cursor = database.query(SQLiteHelper.TABLE_SECTOR_MINERALS,
+				null,
+				whereString,
+				whereList,
+				null,
+				null,
+				null
+				);
+		
+		if(cursor.getCount() > 0){
+			cursor.moveToFirst();
+			do{
+				sector.addMineral(cursorToMineral(cursor));
+			}while(cursor.moveToNext());
+		}
+		
+		return sector;
+	}
+	
+	/**
+	 * Takes a cursor for a Mineral and converts it to a Mineral object
+	 * @param cursor
+	 * @return
+	 */
+	private Mineral cursorToMineral(Cursor cursor){
+		Mineral mineral  = new Mineral();
+		
+		mineral.setMineral(cursor.getString(2));
+		
+		return mineral;
+	}
+	
 	/**
 	 * Attempts to add a mineral to the given sector
-	 * @param sector Must have an id >= 0
+	 * @param sector Must have an id > 0
 	 * @param mineral
 	 */
 	public void addMineralToSector(Sector sector, Mineral mineral){
