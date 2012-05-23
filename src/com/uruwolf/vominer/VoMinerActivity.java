@@ -1,6 +1,8 @@
 package com.uruwolf.vominer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.uruwolf.vominer.data.*;
 
@@ -35,6 +37,9 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
 	//Contains the currently selected sector
 	private Sector currentSector;
 	
+	private List<String> mineralList;
+	private ArrayAdapter<String> mineralAdapter;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,17 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
         
         //Add a listener to the add button
         ((Button)findViewById(R.id.button_add_mineral)).setOnClickListener(this);
+        
+        //Add the assigned minerals to the list
+       	Spinner oreSpinner = (Spinner) findViewById(R.id.mineralList);
+       	//Set up the list
+       	mineralList = new ArrayList<String>(Static.mineralList);
+       	//Add it all in
+      	mineralAdapter = new ArrayAdapter<String>(this,
+      			android.R.layout.simple_list_item_1,
+              	mineralList);
+        mineralAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        oreSpinner.setAdapter(mineralAdapter);
     }
     
     /**
@@ -138,14 +154,9 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
 	private void setMineralLists(Sector sector){
 		//Populate the list with the initial data
 		//Remove the ones we don't want
-		//Add the assigned minerals to the list
-		Spinner oreSpinner = (Spinner) findViewById(R.id.mineralList);
-		ArrayAdapter<String> mineralAdapter = new ArrayAdapter<String>(this,
-        		android.R.layout.simple_list_item_1,
-        		Static.mineralList);
-        mineralAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        oreSpinner.setAdapter(mineralAdapter);
-        
+		mineralList.clear();
+		mineralList.addAll(Static.mineralList);
+		
         //Grab the ore list for later
         ArrayAdapter<String> oreListAdapter = new ArrayAdapter<String>(this,
         		android.R.layout.simple_list_item_1,
@@ -154,11 +165,12 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
         
         //Add and remove the needed things from the lists 
         for(Mineral mineral : sector.getMinerals()){
-        	mineralAdapter.remove(mineral.getMineral());
-        	mineralAdapter.notifyDataSetChanged();
+        	mineralList.remove(mineral.getMineral());
         	
         	oreListAdapter.add(mineral.getMineral());
-        	oreListAdapter.notifyDataSetChanged();
         }
+        
+        mineralAdapter.notifyDataSetChanged();
+        oreListAdapter.notifyDataSetChanged();
 	}
 }
