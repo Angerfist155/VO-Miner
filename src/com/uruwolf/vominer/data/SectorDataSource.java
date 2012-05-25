@@ -181,4 +181,20 @@ public class SectorDataSource {
 		mineral.setId(database.insert(SQLiteHelper.TABLE_SECTOR_MINERALS, null, values));
 		sector.addMineral(mineral);
 	}
+	
+	/**
+	 * Removes a mineral from a sector. 
+	 * @param sector Must have an id > 0
+	 * @param mineral
+	 */
+	public void removeMineralFromSector(Sector sector, Mineral mineral){
+		if(sector.getId() < 0)
+			throw new IllegalArgumentException("Sector needs a valid id.");
+		
+		String where = SQLiteHelper.COL_SECTOR_MINERALS_SECTOR+"=? AND "+
+					   SQLiteHelper.COL_SECTOR_MINERALS_MINERAL+"=?";
+		String[] whereData = {sector.getId()+"", mineral.getMineral()};
+		
+		database.delete(SQLiteHelper.TABLE_SECTOR_MINERALS, where, whereData);
+	}
 }

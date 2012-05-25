@@ -9,16 +9,18 @@ import com.uruwolf.vominer.data.*;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
  * The main activity for the app
  * @author Steve "Uru" West <uruwolf@gmail.com>
  */
-public class VoMinerActivity extends Activity implements OnItemSelectedListener, OnClickListener{
+public class VoMinerActivity extends Activity implements OnItemSelectedListener, OnClickListener, OnItemClickListener{
 	
 	//Tag to use for debugging
 	public static final String TAG = "Vo-Miner";
@@ -73,6 +75,9 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
         //Add a listener to the add button
         ((Button)findViewById(R.id.button_add_mineral)).setOnClickListener(this);
         
+        //Add the listener to the mineral list
+        ((ListView)findViewById(R.id.oreList)).setOnItemClickListener(this);
+        
         //Add the assigned minerals to the list
        	Spinner oreSpinner = (Spinner) findViewById(R.id.mineralList);
        	//Set up the list
@@ -120,9 +125,13 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
     	// Ping the SectorInfoFragment to get it to update
     	//Make sure we have an up-to-date sector
-    	currentSector = data.populate(getSelectedSector());
+    	refreshCurrentSector();
 
     	setMineralLists(currentSector);
+    }
+    
+    private void refreshCurrentSector(){
+    	currentSector = data.populate(getSelectedSector());
     }
     
     /**
@@ -141,13 +150,22 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
     public void onNothingSelected(AdapterView<?> parentView) {
     	// Do nothing
     }
-
-	public void onClick(View v) {
+	
+	public void onClick(View v){
 		Mineral mineral  = new Mineral();
 		String mineralName = (String)((Spinner)findViewById(R.id.mineralList)).getSelectedItem();
 		mineral.setMineral(mineralName);
 		
 		data.addMineralToSector(currentSector, mineral);
+		setMineralLists(currentSector);
+	}
+	
+	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+		//Get the name of the selected mineral
+		String mineralName = (String) ((ListView)findViewById(R.id.oreList)).getItemAtPosition(pos);
+		data.removeMineralFromSector(currentSector, new Mineral(null, mineralName));
+		
+		refreshCurrentSector();
 		setMineralLists(currentSector);
 	}
 	
