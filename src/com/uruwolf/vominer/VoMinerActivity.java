@@ -60,6 +60,9 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
 	private List<String> mineralList;
 	private ArrayAdapter<String> mineralAdapter;
 	
+	//This is used when the mineral list is empty. There has to be a element so we make it a blank one.
+	private String emptyMineralString = "";
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -169,13 +172,20 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
     	// Do nothing
     }
 	
+    /**
+     * Handles what to do when the add button is clicked.
+     * Namely adding the selected mineral to the sector and updating the lists after.
+     */
 	public void onClick(View v){
 		Mineral mineral  = new Mineral();
 		String mineralName = (String)((Spinner)findViewById(R.id.mineralList)).getSelectedItem();
-		mineral.setMineral(mineralName);
 		
-		data.addMineralToSector(currentSector, mineral);
-		setMineralLists(currentSector);
+		if(!mineralName.equals(emptyMineralString)){
+			mineral.setMineral(mineralName);
+		
+			data.addMineralToSector(currentSector, mineral);
+			setMineralLists(currentSector);
+		}
 	}
 	
 	public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
@@ -205,6 +215,10 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
         	
         	oreListAdapter.add(mineral.getMineral());
         }
+        
+        //Check to see if the mineral list is empty. If so add the empy mineral
+        if(mineralList.size() == 0)
+        	mineralList.add(emptyMineralString);
         
         mineralAdapter.notifyDataSetChanged();
         oreListAdapter.notifyDataSetChanged();
