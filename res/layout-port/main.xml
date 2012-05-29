@@ -5,24 +5,66 @@
     android:baselineAligned="true"
     android:orientation="vertical" >
 
-    <fragment
-        android:name="com.uruwolf.vominer.fragments.ControlPanelFragment"
-        android:id="@+id/sectorSelect"
-        android:layout_height="wrap_content"
+    <Spinner
+	    android:id="@+id/systemList"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    
+    <Spinner
+	    android:id="@+id/gridAlphaList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    
+    <Spinner
+	    android:id="@+id/gridNumList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         />
     
     <View
-        android:layout_height="2dp"
-        android:layout_width="fill_parent"
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
         android:background="@android:color/holo_blue_bright"
         />
     
-	<fragment
-        android:name="com.uruwolf.vominer.fragments.SectorInfoFragment"
-        android:id="@+id/sectorInfo"
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        
+        <Spinner
+            android:id="@+id/mineralList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+        
+        
+        <Button
+            android:id="@+id/button_add_mineral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_add_mineral"
+            android:layout_weight="3" />
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        />
+        android:text="@string/minerals_found"
+            android:layout_weight="3" />
+
+    <ListView
+        android:id="@+id/oreList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_weight="3" >
+    </ListView>
 
 </LinearLayout>
