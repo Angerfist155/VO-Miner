@@ -109,6 +109,32 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
               	mineralList);
         mineralAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         oreSpinner.setAdapter(mineralAdapter);
+        
+        //Pasted code begins here
+        
+      //Set up all the spinners. One for the system and another two for the coords. I hate how messy this is
+      		Spinner systemSpinner = (Spinner) findViewById(R.id.systemList);
+              ArrayAdapter<String> systemAdapter = new ArrayAdapter<String>(this,
+              		android.R.layout.simple_list_item_1,
+              		Static.systemList);
+              systemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+              systemSpinner.setAdapter(systemAdapter);
+      		
+              //Load the letter selection
+              Spinner gridAlphaSpinner = (Spinner) findViewById(R.id.gridAlphaList);
+              ArrayAdapter<String> gridAlphaAdapter = new ArrayAdapter<String>(this,
+              		android.R.layout.simple_list_item_1,
+              		Static.alphaCoordList);
+              gridAlphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+              gridAlphaSpinner.setAdapter(gridAlphaAdapter);
+
+              //And finally load the number selector
+              Spinner gridNumSpinner = (Spinner) findViewById(R.id.gridNumList);
+              ArrayAdapter<String> gridNumAdapter = new ArrayAdapter<String>(this,
+              		android.R.layout.simple_list_item_1,
+              		Static.numCoordList);
+              gridNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+              gridNumSpinner.setAdapter(gridNumAdapter);
     }
     
     /**
