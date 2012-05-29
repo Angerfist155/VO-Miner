@@ -216,7 +216,7 @@ public class VoMinerActivity extends Activity implements OnItemSelectedListener,
         	oreListAdapter.add(mineral.getMineral());
         }
         
-        //Check to see if the mineral list is empty. If so add the empy mineral
+        //Check to see if the mineral list is empty. If so add the emtpy mineral
         if(mineralList.size() == 0)
         	mineralList.add(emptyMineralString);
         
